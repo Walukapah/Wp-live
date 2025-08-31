@@ -4,8 +4,8 @@ FROM ubuntu:22.04
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DISPLAY=:1
-ENV USER=hfuser
-ENV PASSWORD=hfpass
+ENV USER=waluka
+ENV PASSWORD=waluka
 
 # Install necessary packages
 RUN apt-get update && apt-get install -y \

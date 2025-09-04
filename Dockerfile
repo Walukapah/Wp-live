@@ -1,21 +1,19 @@
-# Base image
-FROM ubuntu:24.04
+FROM ubuntu:22.04
 
-# Set environment variables
-ENV DEBIAN_FRONTEND=noninteractive
-
-# Update packages and install dependencies
+# Basics install
 RUN apt-get update && apt-get install -y \
-    ttyd \
-    bash \
     curl \
-    vim \
     git \
-    && apt-get clean \
+    wget \
+    nodejs \
+    npm \
     && rm -rf /var/lib/apt/lists/*
 
-# Expose the port ttyd will run on
-EXPOSE 7681
+# code-server install
+RUN curl -fsSL https://code-server.dev/install.sh | sh
 
-# Command to run ttyd with bash
-CMD ["ttyd", "-p", "7681", "bash"]
+# Port expose කරන්න
+EXPOSE 8080
+
+# No password mode
+CMD ["code-server", "--bind-addr", "0.0.0.0:8080", "--auth", "none"]
